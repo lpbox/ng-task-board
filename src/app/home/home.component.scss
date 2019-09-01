@@ -14,70 +14,71 @@
   height: 100%;
   display: flex;
 
-  #my-tasks {
-    flex-basis: 66%;
-  }
-
   .active-clients {
     flex-basis: 33%;
-  }
-
-  #my-tasks {
-    padding-top: 20px;
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-  }
-
-  .title {
-    padding: 25px 35px;
-    border-bottom: 1px solid #f0f0f0;
-    color: #232323;
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 19px;
-  }
-
-  .items-wrapper {
-    position: relative;
-
-    &.with-padding {
-      padding: 20px 30px 0 20px;
-    }
-
-    .item {
-      padding: 25px 0;
-      margin: 0 35px;
+  
+    .title {
+      padding: 25px 35px;
       border-bottom: 1px solid #f0f0f0;
-
-      %placeholder-base {
-        height: 20px;
-        background: rgb(206, 206, 206); /* Old browsers */
-        background: -moz-linear-gradient(left, rgba(206, 206, 206, 1) 0%, rgba(206, 206, 206, 0.5) 100%); /* FF3.6-15 */
-        background: -webkit-linear-gradient(
-          left,
-          rgba(206, 206, 206, 1) 0%,
-          rgba(206, 206, 206, 0.5) 100%
-        ); /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(
-          to right,
-          rgba(206, 206, 206, 1) 0%,
-          rgba(206, 206, 206, 0.5) 100%
-        ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cecece', endColorstr='#cccccc',GradientType=1 ); /* IE6-9 */
+      color: #232323;
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 19px;
+    }
+  
+    .items-wrapper {
+      position: relative;
+  
+      &.with-padding {
+        padding: 10px 20px 0 10px;
       }
-
-      .placeholder {
-        @extend %placeholder-base;
-        margin-top: 10px;
-      }
-
-      .placeholder-short {
-        @extend %placeholder-base;
-        width: 70%;
+  
+      .item {
+        padding: 25px 0;
+        margin: 0 35px;
+        border-bottom: 1px solid #f0f0f0;
+  
+        %placeholder-base {
+          height: 20px;
+          background: rgb(206, 206, 206); /* Old browsers */
+          background: -moz-linear-gradient(left, rgba(206, 206, 206, 1) 0%, rgba(206, 206, 206, 0.5) 100%); /* FF3.6-15 */
+          background: -webkit-linear-gradient(
+            left,
+            rgba(206, 206, 206, 1) 0%,
+            rgba(206, 206, 206, 0.5) 100%
+          ); /* Chrome10-25,Safari5.1-6 */
+          background: linear-gradient(
+            to right,
+            rgba(206, 206, 206, 1) 0%,
+            rgba(206, 206, 206, 0.5) 100%
+          ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cecece', endColorstr='#cccccc',GradientType=1 ); /* IE6-9 */
+        }
+  
+        .placeholder {
+          @extend %placeholder-base;
+          margin-top: 10px;
+        }
+  
+        .placeholder-short {
+          @extend %placeholder-base;
+          width: 70%;
+        }
       }
     }
   }
+
+  #my-tasks-container {
+    display: flex;
+    flex-basis: 66%;  
+  
+    #my-tasks {
+      display: flex;
+      flex-direction: column;
+      margin-left: 20px;
+    }
+  }
+
 }
 
 // remove card margin bottom
@@ -121,8 +122,8 @@
 }
 
 .tasks-header {
-  height: 84px;
-  padding: 0 20px 16px 20px;
+  height: 104px;
+  padding: 20px 20px 16px 20px;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #e5e5e5;
@@ -146,7 +147,6 @@
 
 .task-item {
   padding: 9.5px 13px 12.25px 13px;
-  height: 90px;
   border-bottom: 1px solid #e5e5e5;
   display: flex;
   justify-content: space-between;

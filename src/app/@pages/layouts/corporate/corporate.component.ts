@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@an
 import { RootLayout } from '../root/root.component';
 import { Router } from '@angular/router';
 import { pagesToggleService } from '../../services/toggler.service';
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'corporate-layout',

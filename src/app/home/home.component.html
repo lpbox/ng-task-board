@@ -4,7 +4,7 @@
 
     <div id="cards-flex-container">
 
-        <div class="active-clients" class="card">
+        <div class="active-clients card">
             <div class="title" i18n="@@MyActiveClients">
                 MIS CLIENTES ACTIVOS EN ESTE MOMENTO
             </div>
@@ -34,93 +34,95 @@
             </div>
         </div>
 
-        <div id="my-tasks" class="card">
-            <div class="tasks-header">
-                <div>
-                    <div class="task-title" i18n="@@myTasks">MIS TAREAS</div>
-                    <div class="task-count">{{tasks.length}}
-                        <ng-container i18n="@@tasks">Tareas</ng-container>
+        <div id="my-tasks-container">
+            <div id="my-tasks" class="card">
+                <div class="tasks-header">
+                    <div>
+                        <div class="task-title" i18n="@@myTasks">MIS TAREAS</div>
+                        <div class="task-count">{{tasks.length}}
+                            <ng-container i18n="@@tasks">Tareas</ng-container>
+                        </div>
                     </div>
+                    <button class="btn btn-default btn-36" (click)="openTaskModal()">Nueva Tarea</button>
                 </div>
-                <button class="btn btn-default btn-36" (click)="openTaskModal()">Nueva Tarea</button>
+                <div id="tasksScrollbar" class="items-wrapper scrollable with-padding"
+                     [perfectScrollbar]="verticalScrollbarConfig">
+                    <ng-container *ngIf="!tasks">
+                        <p class="loading-text">Loading...</p>
+                    </ng-container>
+                    <ng-container *ngIf="tasks">
+                        <div class="task-item" *ngFor="let task of tasks" (click)="openTaskModal(task)">
+                            <div (click)="onDeleteContextMenu($event, task)" class="dots-wrapper">
+                                <span class="dots-button"></span>
+                            </div>
+                            <div>
+                                <div class="task-name">{{task.title}}</div>
+                                <div class="task-description">{{task.description}}</div>
+                            </div>
+                            <div class="d-flex flex-column">
+                                <div class="task-days">
+                                    Hace {{task.createdOn| daysAgo}} días
+                                </div>
+                                <div (click)="onPriorityContextMenu($event, task)"
+                                     *ngIf="task.priority === taskPriority.LOW" class="low-priority">
+                                    <ng-container i18n="@@lowPriority">PRIORIDAD BAJA</ng-container>
+                                    <img class="chevron-down" src="../../assets/img/common/chevron-right-green.svg" alt="">
+                                </div>
+                                <div (click)="onPriorityContextMenu($event, task)"
+                                     *ngIf="task.priority === taskPriority.MEDIUM" class="medium-priority">
+                                    <ng-container i18n="@@mediumPriority">PRIORIDAD MEDIA</ng-container>
+                                    <img class="chevron-down" src="../../assets/img/common/chevron-right-yellow.svg" alt="">
+                                </div>
+                                <div (click)="onPriorityContextMenu($event, task)"
+                                     *ngIf="task.priority === taskPriority.HIGH" class="high-priority">
+                                    <ng-container i18n="@@highPriority">PRIORIDAD ALTA</ng-container>
+                                    <img class="chevron-down" src="../../assets/img/common/chevron-right-red.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
             </div>
-            <div id="tasksScrollbar" class="items-wrapper scrollable with-padding"
-                 [perfectScrollbar]="verticalScrollbarConfig">
-                <ng-container *ngIf="!tasks">
-                    <p class="loading-text">Loading...</p>
-                </ng-container>
-                <ng-container *ngIf="tasks">
-                    <div class="task-item" *ngFor="let task of tasks" (click)="openTaskModal(task)">
-                        <div (click)="onDeleteContextMenu($event, task)" class="dots-wrapper">
-                            <span class="dots-button"></span>
-                        </div>
-                        <div>
-                            <div class="task-name">{{task.title}}</div>
-                            <div class="task-description">{{task.description}}</div>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; align-items: flex-end">
-                            <div class="task-days">
-                                Hace {{task.createdOn| daysAgo}} días
-                            </div>
-                            <div (click)="onPriorityContextMenu($event, task)"
-                                 *ngIf="task.priority === taskPriority.LOW" class="low-priority">
-                                <ng-container i18n="@@lowPriority">PRIORIDAD BAJA</ng-container>
-                                <img class="chevron-down" src="../../assets/img/common/chevron-right-green.svg" alt="">
-                            </div>
-                            <div (click)="onPriorityContextMenu($event, task)"
-                                 *ngIf="task.priority === taskPriority.MEDIUM" class="medium-priority">
-                                <ng-container i18n="@@mediumPriority">PRIORIDAD MEDIA</ng-container>
-                                <img class="chevron-down" src="../../assets/img/common/chevron-right-yellow.svg" alt="">
-                            </div>
-                            <div (click)="onPriorityContextMenu($event, task)"
-                                 *ngIf="task.priority === taskPriority.HIGH" class="high-priority">
-                                <ng-container i18n="@@highPriority">PRIORIDAD ALTA</ng-container>
-                                <img class="chevron-down" src="../../assets/img/common/chevron-right-red.svg" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </ng-container>
+    
+            <div class="p-container" class="card" [perfectScrollbar]="verticalScrollbarConfig">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eros leo, facilisis a augue sed, vulputate
+                imperdiet nunc. Quisque auctor ac nisl quis lacinia. Morbi ac felis eget tellus dignissim sodales vel ut
+                sapien. Cras rutrum lobortis suscipit. Proin ex diam, eleifend vitae facilisis sed, dapibus vitae elit.
+                Nulla tempor eros lacus, eu varius lorem mollis sed. In vitae porttitor odio. Nam consectetur laoreet massa,
+                vel eleifend justo egestas eu. Fusce interdum ut est at porttitor. Quisque et elit eget ligula maximus
+                congue.
+    
+                Vivamus nec orci eu orci egestas convallis ac vel libero. Ut dapibus sapien ut leo blandit, porttitor
+                ultrices tortor commodo. Vestibulum iaculis sit amet urna a iaculis. Phasellus rutrum turpis nunc, quis
+                egestas odio sodales venenatis. Integer vitae condimentum justo. Etiam nisi lorem, pretium eget porttitor
+                quis, aliquet vestibulum magna. Curabitur consectetur ligula sit amet aliquet sodales. Sed dui nibh, aliquet
+                at tincidunt a, volutpat gravida sem. Pellentesque vitae vestibulum justo. Sed ac tempus leo. Nulla nec
+                lacus id dolor ullamcorper dignissim. Donec eget bibendum tortor, nec ultrices lacus. Integer porttitor vel
+                elit sed tincidunt. Etiam viverra vulputate neque a vestibulum.
+    
+                Suspendisse egestas sit amet purus ac pretium. Suspendisse tempor lectus non est rhoncus feugiat. Quisque
+                tincidunt ultricies tristique. Phasellus fermentum nibh lectus. Nulla finibus dui nec sapien tristique,
+                posuere gravida tortor porta. Sed viverra magna id erat ornare ultricies. Vestibulum interdum tellus id
+                porttitor ullamcorper. Fusce volutpat libero quis velit pharetra hendrerit. Donec vulputate viverra
+                vestibulum. Sed feugiat metus varius elementum sagittis. Nulla facilisi. Fusce convallis pretium nunc,
+                malesuada pulvinar leo sollicitudin id.
+    
+                Sed et tristique sapien. Donec in commodo tortor. Cras cursus nisi velit, vitae gravida enim tristique et.
+                Morbi a justo erat. Maecenas sem urna, elementum in ligula non, cursus aliquet lacus. Praesent turpis dolor,
+                gravida nec vulputate et, ultricies sed justo. Sed eget ligula ut odio scelerisque tempor. Ut rhoncus massa
+                id magna egestas congue. Suspendisse tristique est tellus, a ultrices ipsum posuere vitae. Maecenas id lacus
+                non sapien aliquam ullamcorper sed ut ante. Sed vel ex feugiat, porttitor nisl sit amet, molestie massa. In
+                ligula neque, pellentesque eget posuere eget, blandit quis ex. Curabitur interdum sapien nec arcu ultricies
+                hendrerit.
+    
+                Nulla diam lorem, faucibus a blandit in, ornare sit amet massa. Sed blandit nec enim quis malesuada. Quisque
+                vel neque nisl. Cras felis ligula, pharetra ac laoreet ut, vehicula vitae elit. Vestibulum sapien nisi,
+                malesuada ut condimentum et, consectetur in est. Nunc cursus iaculis dolor ac suscipit. Fusce sed commodo
+                lorem, ut lacinia ligula. Nunc cursus erat ac rhoncus placerat. Aenean maximus tempor luctus. In dictum ex
+                nec consequat posuere. Nullam imperdiet lectus et metus tempor, sed scelerisque est varius. Fusce eget nunc
+                eget erat tristique venenatis sed vehicula tortor. Pellentesque molestie, mi vitae varius euismod, urna
+                magna rutrum nibh, tincidunt finibus neque erat sit amet justo.
             </div>
-        </div>
-
-        <div class="p-container" class="card">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eros leo, facilisis a augue sed, vulputate
-            imperdiet nunc. Quisque auctor ac nisl quis lacinia. Morbi ac felis eget tellus dignissim sodales vel ut
-            sapien. Cras rutrum lobortis suscipit. Proin ex diam, eleifend vitae facilisis sed, dapibus vitae elit.
-            Nulla tempor eros lacus, eu varius lorem mollis sed. In vitae porttitor odio. Nam consectetur laoreet massa,
-            vel eleifend justo egestas eu. Fusce interdum ut est at porttitor. Quisque et elit eget ligula maximus
-            congue.
-
-            Vivamus nec orci eu orci egestas convallis ac vel libero. Ut dapibus sapien ut leo blandit, porttitor
-            ultrices tortor commodo. Vestibulum iaculis sit amet urna a iaculis. Phasellus rutrum turpis nunc, quis
-            egestas odio sodales venenatis. Integer vitae condimentum justo. Etiam nisi lorem, pretium eget porttitor
-            quis, aliquet vestibulum magna. Curabitur consectetur ligula sit amet aliquet sodales. Sed dui nibh, aliquet
-            at tincidunt a, volutpat gravida sem. Pellentesque vitae vestibulum justo. Sed ac tempus leo. Nulla nec
-            lacus id dolor ullamcorper dignissim. Donec eget bibendum tortor, nec ultrices lacus. Integer porttitor vel
-            elit sed tincidunt. Etiam viverra vulputate neque a vestibulum.
-
-            Suspendisse egestas sit amet purus ac pretium. Suspendisse tempor lectus non est rhoncus feugiat. Quisque
-            tincidunt ultricies tristique. Phasellus fermentum nibh lectus. Nulla finibus dui nec sapien tristique,
-            posuere gravida tortor porta. Sed viverra magna id erat ornare ultricies. Vestibulum interdum tellus id
-            porttitor ullamcorper. Fusce volutpat libero quis velit pharetra hendrerit. Donec vulputate viverra
-            vestibulum. Sed feugiat metus varius elementum sagittis. Nulla facilisi. Fusce convallis pretium nunc,
-            malesuada pulvinar leo sollicitudin id.
-
-            Sed et tristique sapien. Donec in commodo tortor. Cras cursus nisi velit, vitae gravida enim tristique et.
-            Morbi a justo erat. Maecenas sem urna, elementum in ligula non, cursus aliquet lacus. Praesent turpis dolor,
-            gravida nec vulputate et, ultricies sed justo. Sed eget ligula ut odio scelerisque tempor. Ut rhoncus massa
-            id magna egestas congue. Suspendisse tristique est tellus, a ultrices ipsum posuere vitae. Maecenas id lacus
-            non sapien aliquam ullamcorper sed ut ante. Sed vel ex feugiat, porttitor nisl sit amet, molestie massa. In
-            ligula neque, pellentesque eget posuere eget, blandit quis ex. Curabitur interdum sapien nec arcu ultricies
-            hendrerit.
-
-            Nulla diam lorem, faucibus a blandit in, ornare sit amet massa. Sed blandit nec enim quis malesuada. Quisque
-            vel neque nisl. Cras felis ligula, pharetra ac laoreet ut, vehicula vitae elit. Vestibulum sapien nisi,
-            malesuada ut condimentum et, consectetur in est. Nunc cursus iaculis dolor ac suscipit. Fusce sed commodo
-            lorem, ut lacinia ligula. Nunc cursus erat ac rhoncus placerat. Aenean maximus tempor luctus. In dictum ex
-            nec consequat posuere. Nullam imperdiet lectus et metus tempor, sed scelerisque est varius. Fusce eget nunc
-            eget erat tristique venenatis sed vehicula tortor. Pellentesque molestie, mi vitae varius euismod, urna
-            magna rutrum nibh, tincidunt finibus neque erat sit amet justo.
         </div>
     </div>
 
